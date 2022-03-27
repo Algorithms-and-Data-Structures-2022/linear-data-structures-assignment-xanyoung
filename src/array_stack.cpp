@@ -25,7 +25,7 @@ namespace assignment {
       Resize(capacity_ + kCapacityGrowthCoefficent);
     }
     data_[size_] = value;
-    size += 1;
+    size_ += 1;
   }
 
   bool ArrayStack::Pop() {
