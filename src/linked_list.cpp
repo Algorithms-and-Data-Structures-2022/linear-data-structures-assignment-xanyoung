@@ -44,7 +44,6 @@ namespace assignment {
   }
 
   bool LinkedList::Set(int index, int new_value) {
-    return false;
     if (index < 0 or index >= size_) {
       return false;
     }
