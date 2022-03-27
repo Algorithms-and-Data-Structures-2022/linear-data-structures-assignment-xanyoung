@@ -9,62 +9,151 @@ namespace assignment {
   }
 
   void LinkedList::Add(int value) {
-    // Write your code here ...
+    Node* node = new Node(value);
+    if (front_ == nullptr){
+      front_ = node;
+    } else {
+      back_->next = node;
+    }
+    back_ = node;
+    size_ += 1;
   }
 
   bool LinkedList::Insert(int index, int value) {
-    // Write your code here ...
-    return false;
+    if (index < 0 or index > size_){
+      return false;
+    }
+    Node* node = new Node(value);
+    if (index == 0){
+      if (front_ != nullptr) {
+        node->next = front_;
+      } else {
+        back_ = node;
+      }
+      front_ = node;
+    } else if (index == size_){
+      back_->next = node;
+      back_ = node;
+    } else {
+      Node* prev_node = FindNode(index - 1);
+      node->next = prev_node->next;
+      prev_node->next = node;
+    }
+    size_ += 1;
+    return true;
   }
 
   bool LinkedList::Set(int index, int new_value) {
-    return false;
+    if (index < 0 or index >= size_) {
+      return false;
+    }
+    Node *curr = front_;
+    for (int i = 0; i < index; i++){
+      curr = curr->next;
+    }
+    curr->value = new_value;
+    return true;
   }
 
   std::optional<int> LinkedList::Remove(int index) {
-    // Write your code here ...
-    return std::nullopt;
+    if (index < 0 or index >= size_){
+      return std::nullopt;
+    }
+    if (index == 0){
+      if (front_ == nullptr){
+        return std::nullopt;
+      }
+      auto val = front_->value;
+      front_ = front_->next;
+      size_ -= 1;
+      return val;
+    }
+    Node* prev = FindNode(index - 1);
+    auto val = prev->next->value;
+    prev->next = prev->next->next;
+    size_ -= 1;
+    return val;
   }
 
   void LinkedList::Clear() {
-    // Write your code here ...
+    for (Node* curr = front_; curr != nullptr; /* */) {
+      Node* node_to_remove = curr;
+      curr = curr->next;
+      delete node_to_remove;
+    }
+    front_ = nullptr;
+    back_ = nullptr;
+    size_ = 0;
   }
 
   std::optional<int> LinkedList::Get(int index) const {
-    // Write your code here ...
-    return std::nullopt;
+    if (index >= size_ or index < 0) {
+      return std::nullopt;
+    }
+    Node* curr = front_;
+    for (int i = 0; i < index; i++){
+      curr = curr->next;
+    }
+    return curr->value;
   }
 
   std::optional<int> LinkedList::IndexOf(int value) const {
-    // Write your code here ...
+    Node* curr = front_;
+    int index = 0;
+    while(curr != nullptr){
+      if (curr->value != value){
+        curr = curr->next;
+      } else {
+        return index;
+      }
+      index += 1;
+    }
     return std::nullopt;
   }
 
   bool LinkedList::Contains(int value) const {
+    Node* curr = front_;
+    while(curr != nullptr){
+      if (curr->value != value) {
+        curr = curr->next;
+      } else {
+        return true;
+      }
+    }
     return false;
   }
 
   bool LinkedList::IsEmpty() const {
-    return false;
+    return front_ == nullptr;
   }
 
   int LinkedList::size() const {
-    return 0;
+    return size_;
   }
 
   std::optional<int> LinkedList::front() const {
-    // Write your code here ...
+    if (front_ != nullptr){
+      return front_->value;
+    }
     return std::nullopt;
   }
 
   std::optional<int> LinkedList::back() const {
-    // Write your code here ...
+    if (back_ != nullptr){
+      return back_->value;
+    }
     return std::nullopt;
   }
 
   Node* LinkedList::FindNode(int index) const {
-    // Write your code here ...
-    return nullptr;
+    if (index >= size_ or index < 0){
+      return nullptr;
+    }
+    Node* curr = front_;
+    for (int i = 0; i < index; i++) {
+      curr = curr->next;
+    }
+    return curr;
   }
 
   // ДЛЯ ТЕСТИРОВАНИЯ

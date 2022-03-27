@@ -11,66 +11,117 @@ namespace assignment {
     if (capacity <= 0) {
       throw std::invalid_argument("capacity is not positive");
     }
-
-    // Write your code here ...
+    capacity_ = capacity;
+    data_ = new int[capacity];
+    std::fill(data_, data_ + capacity, 0);
   }
 
   DynamicArray::~DynamicArray() {
-    // Write your code here ...
+    size_ = 0;
+    capacity_ = 0;
+    delete [] data_;
+    data_ = nullptr;
   }
 
   void DynamicArray::Add(int value) {
-    // Write your code here ...
+    if (size_ >= capacity_){
+      Resize(capacity_ + kCapacityGrowthCoefficient);
+    }
+    if (data_ != nullptr){
+      data_[size_] = value;
+      size_ += 1;
+    }
   }
 
   bool DynamicArray::Insert(int index, int value) {
-    // Write your code here ...
-    return false;
+    if (index < 0 or index > size_){
+      return false;
+    }
+    if (size_ >= capacity_){
+      Resize(capacity_ + kCapacityGrowthCoefficient);
+    }
+    for(int i=size_; i>index; i--){
+      data_[i] = data_[i-1];
+    }
+    data_[index] = value;
+    size_ += 1;
+    return true;
   }
 
   bool DynamicArray::Set(int index, int new_value) {
-    // Write your code here ...
-    return false;
+    if (index < 0 or index >= size_){
+      return false;
+    }
+    data_[index] = new_value;
+    return true;
   }
 
   std::optional<int> DynamicArray::Remove(int index) {
-    // Write your code here ...
-    return std::nullopt;
+    if (index < 0 or index >= size_){
+      return std::nullopt;
+    }
+    int value = data_[index];
+    for(int i = index; i < size_; i++){
+      data_[i] = data_[i+1];
+    }
+    size_ -= 1;
+    return value;
   }
 
   void DynamicArray::Clear() {
-    // Write your code here ...
+    size_ = 0;
+    data_ = nullptr;
   }
 
   std::optional<int> DynamicArray::Get(int index) const {
-    // Write your code here ...
+    if (index >= 0 and index < size_) {
+      return data_[index];
+    }
     return std::nullopt;
   }
 
   std::optional<int> DynamicArray::IndexOf(int value) const {
-    // Write your code here ...
+    if (data_ == nullptr){
+      return std::nullopt;
+    }
+    for (int i = 0; i < size_; i++){
+      if (data_[i] == value){
+        return i;
+      }
+    }
     return std::nullopt;
   }
 
   bool DynamicArray::Contains(int value) const {
+    for (int i = 0; i < size_; i++){
+      if (data_[i] == value){
+        return true;
+      }
+    }
     return false;
   }
 
   bool DynamicArray::IsEmpty() const {
-    return false;
+    return size_ == 0;
   }
 
   int DynamicArray::size() const {
-    return 0;
+    return size_;
   }
 
   int DynamicArray::capacity() const {
-    return 0;
+    return capacity_;
   }
 
   bool DynamicArray::Resize(int new_capacity) {
-    // Write your code here ...
-    return false;
+    if (new_capacity <= capacity_) {
+      return false;
+    }
+    int* new_data = new int[new_capacity];
+    std::copy(data_, data_ + size_, new_data);
+    data_ = new_data;
+    capacity_ = new_capacity;
+    return true;
   }
 
   // ДЛЯ ТЕСТИРОВАНИЯ
