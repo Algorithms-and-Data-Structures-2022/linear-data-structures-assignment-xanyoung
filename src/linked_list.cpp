@@ -20,8 +20,6 @@ namespace assignment {
   }
 
   bool LinkedList::Insert(int index, int value) {
-    // Write your code here ...
-    return false;
     if (index < 0 or index > size_){
       return false;
     }
@@ -59,8 +57,6 @@ namespace assignment {
   }
 
   std::optional<int> LinkedList::Remove(int index) {
-    // Write your code here ...
-    return std::nullopt;
     if (index < 0 or index >= size_){
       return std::nullopt;
     }
@@ -92,8 +88,6 @@ namespace assignment {
   }
 
   std::optional<int> LinkedList::Get(int index) const {
-    // Write your code here ...
-    return std::nullopt;
     if (index >= size_ or index < 0) {
       return std::nullopt;
     }
@@ -131,12 +125,10 @@ namespace assignment {
   }
 
   bool LinkedList::IsEmpty() const {
-    return false;
     return front_ == nullptr;
   }
 
   int LinkedList::size() const {
-    return 0;
     return size_;
   }
 
@@ -155,8 +147,6 @@ namespace assignment {
   }
 
   Node* LinkedList::FindNode(int index) const {
-    // Write your code here ...
-    return nullptr;
     if (index >= size_ or index < 0){
       return nullptr;
     }

@@ -20,8 +20,6 @@ namespace assignment {
   }
 
   bool LinkedQueue::Dequeue() {
-    // Write your code here ...
-    return false;
     if (front_ == nullptr) {
       return false;
     }
@@ -42,8 +40,6 @@ namespace assignment {
   }
 
   std::optional<int> LinkedQueue::front() const {
-    // Write your code here ...
-    return std::nullopt;
     if (front_ == nullptr) {
       return std::nullopt;
     }
@@ -51,8 +47,6 @@ namespace assignment {
   }
 
   std::optional<int> LinkedQueue::back() const {
-    // Write your code here ...
-    return std::nullopt;
     if (front_ == nullptr) {
       return std::nullopt;
     }
@@ -60,12 +54,10 @@ namespace assignment {
   }
 
   bool LinkedQueue::IsEmpty() const {
-    return false;
     return size_ == 0;
   }
 
   int LinkedQueue::size() const {
-    return 0;
     return size_;
   }
 

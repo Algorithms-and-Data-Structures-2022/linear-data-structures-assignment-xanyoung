@@ -17,7 +17,6 @@ namespace assignment {
   }
 
   DynamicArray::~DynamicArray() {
-    // Write your code here ...
     size_ = 0;
     capacity_ = 0;
     delete [] data_;
@@ -35,8 +34,6 @@ namespace assignment {
   }
 
   bool DynamicArray::Insert(int index, int value) {
-    // Write your code here ...
-    return false;
     if (index < 0 or index > size_){
       return false;
     }
@@ -52,8 +49,6 @@ namespace assignment {
   }
 
   bool DynamicArray::Set(int index, int new_value) {
-    // Write your code here ...
-    return false;
     if (index < 0 or index >= size_){
       return false;
     }
@@ -62,8 +57,6 @@ namespace assignment {
   }
 
   std::optional<int> DynamicArray::Remove(int index) {
-    // Write your code here ...
-    return std::nullopt;
     if (index < 0 or index >= size_){
       return std::nullopt;
     }
@@ -109,23 +102,18 @@ namespace assignment {
   }
 
   bool DynamicArray::IsEmpty() const {
-    return false;
     return size_ == 0;
   }
 
   int DynamicArray::size() const {
-    return 0;
     return size_;
   }
 
   int DynamicArray::capacity() const {
-    return 0;
     return capacity_;
   }
 
   bool DynamicArray::Resize(int new_capacity) {
-    // Write your code here ...
-    return false;
     if (new_capacity <= capacity_) {
       return false;
     }

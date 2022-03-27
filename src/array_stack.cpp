@@ -22,15 +22,13 @@ namespace assignment {
 
   void ArrayStack::Push(int value) {
     if (size_ >= capacity_){
-      Resize(capacity_ + kCapacityGrowthCoefficent);
+      Resize(capacity_ + kCapacityGrowthCoefficient);
     }
     data_[size_] = value;
     size_ += 1;
   }
 
   bool ArrayStack::Pop() {
-    // Write your code here ...
-    return false;
     if (IsEmpty()) {
       return false;
     }
@@ -46,8 +44,6 @@ namespace assignment {
   }
 
   std::optional<int> ArrayStack::Peek() const {
-    // Write your code here ...
-    return std::nullopt;
     if (IsEmpty()) {
       return std::nullopt;
     }
@@ -55,26 +51,18 @@ namespace assignment {
   }
 
   bool ArrayStack::IsEmpty() const {
-    // Write your code here ...
-    return false;
     return size_ == 0;
   }
 
   int ArrayStack::size() const {
-    // Write your code here ...
-    return 0;
     return size_;
   }
 
   int ArrayStack::capacity() const {
-    // Write your code here ...
-    return 0;
     return capacity_;
   }
 
   bool ArrayStack::Resize(int new_capacity) {
-    // Write your code here ...
-    return false;
     if (new_capacity <= capacity_) {
       return false;
     }
